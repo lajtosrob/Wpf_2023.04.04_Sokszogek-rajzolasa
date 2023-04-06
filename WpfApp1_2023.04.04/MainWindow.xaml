@@ -1,0 +1,46 @@
+﻿<Window x:Class="WpfApp1_2023._04._04.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1_2023._04._04"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="5*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <Canvas x:Name="rajzlap" Background="LightGreen" Margin="5,5,5,5" Grid.Column="3" Grid.RowSpan="5"/>
+
+        <StackPanel Orientation="Horizontal" 
+                    VerticalAlignment="Center">
+            <Label Content="X:" Margin="20 0 10 0" Height="30" />
+            <TextBox x:Name="txtX" Height="30" Width="50" Margin="0 0 20 0"/>
+        </StackPanel>
+
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1"
+                    VerticalAlignment="Center">
+            <Label Content="Y:" Margin="20 0 10 0" Height="30" />
+            <TextBox x:Name="txtY" Height="30" Width="50" Margin="0 0 20 0"/>
+        </StackPanel>
+
+        <Button x:Name="btnRogzit" Content="Rögzít" Grid.Row="2" Margin="20" Click="btnRogzit_Click"/>
+        <Button x:Name="btnBefejezes" Content="Befejezés" Grid.Row="3" Margin="20" Click="btnBefejezes_Click"/>
+        <Button x:Name="btnMentes" Content="Mentés" Grid.Row="4" Margin="20" Click="btnMentes_Click"/>
+
+    </Grid>
+
+
+
+</Window>
