@@ -20,67 +20,52 @@ namespace WpfApp1_2023._04._04
     /// </summary>
     public partial class MainWindow : Window
     {
+        List<Point> pontok = new List<Point>();
+        int index = -1;
 
         public MainWindow()
         {
             InitializeComponent();
-
- 
-
-            List<Point> pontok = new List<Point>();
-
-            Line szakasz = new Line();
-            szakasz.X1 = 50;
-            szakasz.Y1 = 120;
-            szakasz.X2 = 520;
-            szakasz.Y2 = 220;
-            szakasz.StrokeThickness = 2;
-            szakasz.Stroke = Brushes.Red;
-
-            rajzlap.Children.Add(szakasz);
-
-            Ellipse vegPont = new Ellipse();
-            vegPont.Width = 20;
-            vegPont.Height = 20;
-            vegPont.Stroke = Brushes.DarkRed;
-            vegPont.StrokeThickness = 3;
-
-            Canvas.SetLeft(vegPont, szakasz.X1 - 10);
-            Canvas.SetTop(vegPont, szakasz.Y1 - 10);
-            rajzlap.Children.Add(vegPont);
-
-            vegPont = new Ellipse();
-            vegPont.Width = 20;
-            vegPont.Height = 20;
-            vegPont.Stroke = Brushes.DarkRed;
-            vegPont.StrokeThickness = 3;
-
-            Canvas.SetLeft(vegPont, szakasz.X2 - 10);
-            Canvas.SetTop(vegPont, szakasz.Y2 - 10);
-            rajzlap.Children.Add(vegPont);
 
         }
 
         private void btnRogzit_Click(object sender, RoutedEventArgs e)
         {
             Point pont = new Point();
-            pont.X = 0;
-            pont.Y = 0;
+            pont.X = int.Parse(txtX.Text);
+            pont.Y = int.Parse(txtY.Text);
+            pontok.Add(pont);
+            index++;
 
-            Line szakasz = new Line();
-            szakasz.X1 = 50;
-            szakasz.Y1 = 120;
-            szakasz.X2 = 520;
-            szakasz.Y2 = 220;
-            szakasz.StrokeThickness = 2;
-            szakasz.Stroke = Brushes.Red;
 
-            rajzlap.Children.Add(szakasz);
+            if (index == 0)
+            {
+                VegPontFelvetel(pont);
+            }
+            else
+            {
+                SzakasztRajzol(pont);
+            }
+
         }
 
         private void btnBefejezes_Click(object sender, RoutedEventArgs e)
         {
+            Point pont = new Point();
+            pont.X = int.Parse(txtX.Text);
+            pont.Y = int.Parse(txtY.Text);
+            pontok.Add(pont);
+            index++;
 
+            Line szakasz = new Line();
+            szakasz.X1 = pontok[0].X;
+            szakasz.Y1 = pontok[0].Y;
+            szakasz.X2 = pontok[pontok.Count-1].X;
+            szakasz.Y2 = pontok[pontok.Count-1].Y;
+            szakasz.StrokeThickness = 2;
+            szakasz.Stroke = Brushes.Red;
+
+            rajzlap.Children.Add(szakasz);
         }
 
         private void btnMentes_Click(object sender, RoutedEventArgs e)
@@ -99,6 +84,18 @@ namespace WpfApp1_2023._04._04
             Canvas.SetLeft(vegPont, pont.X - 10);
             Canvas.SetTop(vegPont, pont.Y - 10);
             rajzlap.Children.Add(vegPont);
+        }
+
+        private void SzakasztRajzol(Point pont)
+        {
+            Line szakasz = new Line();
+            szakasz.X1 = pontok[index - 1].X;
+            szakasz.Y1 = pontok[index - 1].Y;
+            szakasz.X2 = pontok[index].X;
+            szakasz.Y2 = pontok[index].Y;
+            szakasz.StrokeThickness = 2;
+            szakasz.Stroke = Brushes.Red;
+            rajzlap.Children.Add(szakasz);
         }
     }
 }
