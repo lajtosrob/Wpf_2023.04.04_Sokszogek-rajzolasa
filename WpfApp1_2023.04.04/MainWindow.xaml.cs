@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -70,7 +71,13 @@ namespace WpfApp1_2023._04._04
 
         private void btnMentes_Click(object sender, RoutedEventArgs e)
         {
-
+            StreamWriter sr = new StreamWriter("mentes.txt", append: true);
+            foreach (var item in pontok)
+            {
+                sr.Write($"{item} \n");
+            }
+            sr.Close();
+            MessageBox.Show("A pontok lista mentése megtörtént!");
         }
 
         private void VegPontFelvetel(Point pont)
@@ -83,6 +90,7 @@ namespace WpfApp1_2023._04._04
 
             Canvas.SetLeft(vegPont, pont.X - 10);
             Canvas.SetTop(vegPont, pont.Y - 10);
+
             rajzlap.Children.Add(vegPont);
         }
 
